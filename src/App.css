@@ -1,0 +1,39 @@
+*{
+  margin: 0px;
+  padding: 0px;
+}
+body{
+  background-color: aquamarine;
+}
+.weatherdiv{
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.weatherdiv input{
+  flex-basis: 80%;
+  width: 250px;
+  height: 40px;
+}
+.weatherdiv button{
+  flex-basis: 20%;
+  width: 60px;
+  height: 40px;
+  background-color: brown;
+  color: white;
+
+}
+.citydetails{
+  width: 400px;
+  background-color: aliceblue;
+  margin-top: 50px;
+  position: relative;
+
+}
+.loadimg{
+  width: 100px;
+  position: absolute;
+  left: 40%;
+}
