@@ -1,3 +1,4 @@
+// App.js
 import './App.css';
 import { useEffect, useState } from 'react';
 
@@ -6,17 +7,20 @@ function App() {
   const [wdetails, setWDetails] = useState();
   const [isLoading, setIsLoading] = useState(false);
   const [searched, setSearched] = useState(false);
-  const [counter, setCounter] = useState(1);
 
   const getData = (event) => {
     event.preventDefault();
+    if (!city.trim()) return;
+    
     setIsLoading(true);
     setSearched(true);
 
-    fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=751d66e130befad396405dc13796a57c&units=metric`)
+    fetch(
+      `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=751d66e130befad396405dc13796a57c&units=metric`
+    )
       .then((res) => res.json())
       .then((finalRes) => {
-        if (finalRes.cod === "404") {
+        if (finalRes.cod === '404') {
           setWDetails(undefined);
         } else {
           setWDetails(finalRes);
@@ -32,54 +36,51 @@ function App() {
     setCity('');
   };
 
-  const changeCounter = () => {
-    setCounter(counter + 1);
-  };
-
   useEffect(() => {
-    console.log("Welcome to React");
-  }, [counter]);
+    console.log("React App Mounted");
+  }, []);
 
   return (
-    <div className='weatherdiv'>
-      {/* {counter} */}
-      {/* <button onClick={changeCounter}>Count</button> */}
+    <div className="weather-container">
+      <div className="weather-box">
+        <h1 className="title">🌤️ Weather App</h1>
 
-      <div>
-        <h1>Simple Weather App</h1>
-        <form onSubmit={getData}>
+        <form onSubmit={getData} className="form">
           <input
-            type='text'
+            type="text"
             value={city}
             onChange={(e) => setCity(e.target.value)}
-            className='w-[300px] h-[40px] pl-3'
-            placeholder='City Name'
+            placeholder="Enter city name"
           />
-          <button className='ml-2'>Search</button>
+          <button type="submit">Search</button>
         </form>
 
-        <div className='citydetails mt-4'>
+        <div className="weather-details">
           {isLoading && (
             <img
-              src='https://upload.wikimedia.org/wikipedia/commons/2/28/InternetSlowdown_Day.gif'
-              className='loadimg'
-              alt='Loading...'
+              src="https://upload.wikimedia.org/wikipedia/commons/2/28/InternetSlowdown_Day.gif"
+              className="loader"
+              alt="Loading..."
             />
           )}
 
-          {searched && (
-            wdetails !== undefined ? (
+          {searched && !isLoading && (
+            wdetails ? (
               <>
-                <h3>{wdetails.name}, <span>{wdetails.sys.country}</span></h3>
-                <h2>{wdetails.main.temp} °C</h2>
+                <h2>
+                  {wdetails.name}, <span>{wdetails.sys.country}</span>
+                </h2>
+                <h3>{wdetails.main.temp}°C</h3>
                 <img
-                  src={`http://openweathermap.org/img/w/${wdetails.weather[0].icon}.png`}
-                  alt='Weather Icon'
+                  src={`https://openweathermap.org/img/wn/${wdetails.weather[0].icon}@2x.png`}
+                  alt="weather icon"
                 />
                 <p>{wdetails.weather[0].description}</p>
+                <p>Humidity: {wdetails.main.humidity}%</p>
+                <p>Wind: {wdetails.wind.speed} m/s</p>
               </>
             ) : (
-              <h2>No City Found</h2>
+              <h3>No city found. Please try again.</h3>
             )
           )}
         </div>

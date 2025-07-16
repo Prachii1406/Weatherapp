@@ -1,39 +1,85 @@
-*{
-  margin: 0px;
-  padding: 0px;
+/* App.css */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
-body{
-  background-color: aquamarine;
-}
-.weatherdiv{
-  width: 100%;
-  height: 100vh;
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(135deg, #6dd5ed, #2193b0);
+  color: #000;
+  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.weatherdiv input{
-  flex-basis: 80%;
-  width: 250px;
-  height: 40px;
+
+.weather-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  background-color:rgb(140, 233, 250);
 }
-.weatherdiv button{
-  flex-basis: 20%;
-  width: 60px;
-  height: 40px;
-  background-color: brown;
+
+.weather-box {
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 30px;
+  border-radius: 20px;
+  width: 350px;
+  text-align: center;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(10px);
+}
+
+.title {
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+}
+
+.form {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.form input {
+  padding: 10px;
+  border: none;
+  border-radius: 8px;
+  width: 65%;
+  font-size: 1rem;
+}
+
+.form button {
+  padding: 10px 16px;
+  background-color: #ff4b2b;
+  border: none;
+  border-radius: 8px;
   color: white;
-
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
-.citydetails{
-  width: 400px;
-  background-color: aliceblue;
-  margin-top: 50px;
-  position: relative;
 
+.form button:hover {
+  background-color: #e03e1a;
 }
-.loadimg{
-  width: 100px;
-  position: absolute;
-  left: 40%;
+
+.weather-details img {
+  width: 80px;
+  margin: 10px 0;
+}
+
+.weather-details p {
+  margin: 5px 0;
+  font-size: 1rem;
+}
+
+.loader {
+  width: 80px;
+  margin: 20px auto;
 }
